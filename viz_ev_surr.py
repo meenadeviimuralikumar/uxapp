@@ -9,6 +9,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 # Initialize the app
 app = Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 
 df_surr =  pd.read_csv("surr_all.csv")
 
