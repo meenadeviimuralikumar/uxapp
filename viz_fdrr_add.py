@@ -25,7 +25,7 @@ app.layout = html.Div(children=[
     html.Div([html.P('For the above model, we will simulate changes in ADD ratings by only changing the news reading behavior and keeping values of all other variables constant (at their mean or mode).')],
            style={'width': '750px', 'text-align': 'center', 'margin-left':'325px'}),
     html.Div([
-        html.P('[Pre-] 1005 words + Primary Reporting + 97 words +  '),
+        html.Pre('[Current]  P(A) => 1005 words + Primary Reporting + 97 words +  '),
         dcc.Dropdown(
             id='dd-pre',
             options=[
@@ -38,7 +38,7 @@ app.layout = html.Div(children=[
         )
     ], style={'color':'#4b7df0', 'font-family':'monospace', 'display': 'flex', 'justifyContent': 'center', 'align-items': 'center', 'padding': '20px'}),
     html.Div([
-        html.P('[Post-] 1005 words + Primary Reporting + 97 words +  '),
+        html.Pre('[What-If]  P(B) => 1005 words + Primary Reporting + 97 words +  '),
         dcc.Dropdown(
             id='dd-post',
             options=[
@@ -79,6 +79,8 @@ def update_viz(ddpre, ddpost):
 
     x_range = [0.1, 4]
 
+    title1 = 'Difference in Probabilities: P(B) - P(A)'
+    title2 = 'Ratio of Probabilities: P(B) / P(A)'
 
     if(ddpost == 'Reviewer'):
         df1 = pd.read_csv("add_fd_reviewer.csv")
@@ -90,10 +92,7 @@ def update_viz(ddpre, ddpost):
 
             df2 = df2[df2['comp'] == 'convo']
             df2 = df2.round(2)
-
-            title1 = 'Difference in Probabilities (Reviewer <- Conversationalist ratings)'
-            title2 = 'Ratio of Probabilities (Reviewer <- Conversationalist ratings)'
-
+            
             fd_color = 'tomato'
             rr_color = 'darkviolet'
 
@@ -107,9 +106,6 @@ def update_viz(ddpre, ddpost):
             df2 = df2[df2['comp'] == 'tracker']
             df2 = df2.round(2)
 
-            title1 = 'Difference in Probabilities (Reviewer <- Tracker ratings)'
-            title2 = 'Ratio of Probabilities (Reviewer <- Tracker ratings)'
-
             fd_color = 'tomato'
             rr_color = 'darkviolet'
 
@@ -121,9 +117,6 @@ def update_viz(ddpre, ddpost):
 
             df2 = df2[df2['comp'] == 'reviewer']
             df2 = df2.round(2)
-
-            title1 = 'Difference in Probabilities (Reviewer <- Reviewer ratings)'
-            title2 = 'Ratio of Probabilities (Reviewer <- Reviewer ratings)'
 
             fd_color = 'black'
             rr_color = 'black'
@@ -144,9 +137,6 @@ def update_viz(ddpre, ddpost):
             df2 = df2[df2['comp'] == 'convo']
             df2 = df2.round(2)
 
-            title1 = 'Difference in Probabilities (Tracker <- Conversationalist ratings)'
-            title2 = 'Ratio of Probabilities (Tracker <- Conversationalist ratings)'
-
             fd_color = 'tomato'
             rr_color = 'darkviolet'
 
@@ -159,9 +149,6 @@ def update_viz(ddpre, ddpost):
 
             df2 = df2[df2['comp'] == 'reviewer']
             df2 = df2.round(2)
-
-            title1 = 'Difference in Probabilities (Tracker <- Reviewer ratings)'
-            title2 = 'Ratio of Probabilities (Tracker <- Reviewer ratings)'
 
             fd_color = 'tomato'
             rr_color = 'darkviolet'
@@ -177,9 +164,6 @@ def update_viz(ddpre, ddpost):
 
             df2 = df2[df2['comp'] == 'tracker']
             df2 = df2.round(2)
-
-            title1 = 'Difference in Probabilities (Tracker <- Tracker ratings)'
-            title2 = 'Ratio of Probabilities (Tracker <- Tracker ratings)'
 
             fd_color = 'black'
             rr_color = 'black'
@@ -199,10 +183,7 @@ def update_viz(ddpre, ddpost):
 
             df2 = df2[df2['comp'] == 'tracker']
             df2 = df2.round(2)
-
-            title1 = 'Difference in Probabilities (Conversationalist <- Tracker ratings)'
-            title2 = 'Ratio of Probabilities (Conversationalist <- Tracker ratings)'
-
+            
             fd_color = 'tomato'
             rr_color = 'darkviolet'
 
@@ -215,10 +196,7 @@ def update_viz(ddpre, ddpost):
 
             df2 = df2[df2['comp'] == 'reviewer']
             df2 = df2.round(2)
-
-            title1 = 'Difference in Probabilities (Conversationalist <- Reviewer ratings)'
-            title2 = 'Ratio of Probabilities (Conversationalist <- Reviewer ratings)'
-
+            
             fd_color = 'tomato'
             rr_color = 'darkviolet'
 
@@ -231,9 +209,6 @@ def update_viz(ddpre, ddpost):
 
             df2 = df2[df2['comp'] == 'convo']
             df2 = df2.round(2)
-
-            title1 = 'Difference in Probabilities (Conversationalist <- Conversationalist ratings)'
-            title2 = 'Ratio of Probabilities (Conversationalist <- Conversationalist ratings)'
 
             fd_color = 'black'
             rr_color = 'black'
